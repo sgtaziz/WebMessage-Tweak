@@ -3,7 +3,7 @@ Name: WebMessage
 Version: 0.2.4
 Description: Your messages, on every device.
 Section: System
-Depends: firmware (>= 12.0), org.swift.libswift, openssl, com.muirey03.libmryipc, mobilesubstrate, preferenceloader
+Depends: firmware (>= 12.0), openssl, com.muirey03.libmryipc, mobilesubstrate, preferenceloader
 Conflicts: 
 Replaces: 
 Priority: optional
