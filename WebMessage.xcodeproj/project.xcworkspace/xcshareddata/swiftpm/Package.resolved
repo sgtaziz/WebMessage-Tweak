@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CocoaAsyncSocket",
+        "repositoryURL": "https://github.com/robbiehanson/CocoaAsyncSocket.git",
+        "state": {
+          "branch": null,
+          "revision": "0e00c967a010fc43ce528bd633d032f17158d393",
+          "version": "7.6.4"
+        }
+      },
+      {
+        "package": "HTTPParserC",
+        "repositoryURL": "https://github.com/Building42/HTTPParserC.git",
+        "state": {
+          "branch": null,
+          "revision": "6fa23997359a65eccfc06808ab85f2e121a84290",
+          "version": "2.9.2"
+        }
+      },
+      {
+        "package": "SQLite.swift",
+        "repositoryURL": "https://github.com/stephencelis/SQLite.swift",
+        "state": {
+          "branch": null,
+          "revision": "0a9893ec030501a3956bee572d6b4fdd3ae158a1",
+          "version": "0.12.2"
+        }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON",
+        "state": {
+          "branch": null,
+          "revision": "2b6054efa051565954e1d2b9da831680026cd768",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "Telegraph",
+        "repositoryURL": "https://github.com/Building42/Telegraph",
+        "state": {
+          "branch": "master",
+          "revision": "aeaffd106d23644f2a89a36c803c18d396031fdf",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,12 @@
+#!/bin/sh
+#Generate SSL certificates using OpenSSL
+echo "Creating SSL certificates..."
+chmod +x /Library/Application\ Support/WebMessage/certs.sh
+/Library/Application\ Support/WebMessage/certs.sh 2>&1 > /dev/null
+
+#Setup Daemon
+chown root:wheel /Library/LaunchDaemons/com.sgtaziz.webmessage.plist
+launchctl load /Library/LaunchDaemons/com.sgtaziz.webmessage.plist
+
+#Restart IMAgent to handle new capabilities 
+killall -9 imagent

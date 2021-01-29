@@ -1,0 +1,813 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F95B1B525799A450027112F /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 8F95B1B425799A450027112F /* Makefile */; platformFilter = ios; };
+		8F95B1D4257A8B730027112F /* IPCSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F95B1D3257A8B730027112F /* IPCSender.m */; };
+		8F95B1D7257A8C090027112F /* libmryipc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F95B1D6257A8C090027112F /* libmryipc.dylib */; platformFilter = ios; };
+		8F95B203257A90650027112F /* libwebmessage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F95B201257A90650027112F /* libwebmessage.dylib */; };
+		8F95B206257BBE540027112F /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8F95B205257BBE540027112F /* SwiftyJSON */; };
+		8F9FC989257113E50014E7CC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9FC988257113E50014E7CC /* main.swift */; platformFilter = ios; };
+		8F9FC98C257116240014E7CC /* Telegraph in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 8F9FC98B257116240014E7CC /* Telegraph */; };
+		8F9FC990257116A00014E7CC /* WebMessageServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9FC98F257116A00014E7CC /* WebMessageServer.swift */; platformFilter = ios; };
+		8F9FC997257133BF0014E7CC /* SQLite in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 8F9FC996257133BF0014E7CC /* SQLite */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F95B1BA25799B6F0027112F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F9FC9682571138E0014E7CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F95B1B625799AFD0027112F;
+			remoteInfo = libwebmesesage;
+		};
+		8FF0A15025754C54001775BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FF0A1332575429C001775BD /* WebMessagePreferences.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FF0A11C25754081001775BD;
+			remoteInfo = WebMessagePreferences;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8F1462A4258CEF9A00A5C80F /* kern_memorystatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kern_memorystatus.h; sourceTree = "<group>"; };
+		8F8D654F2571588300D6B5C5 /* LaunchDaemons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LaunchDaemons; sourceTree = "<group>"; };
+		8F8D65502571590000D6B5C5 /* preinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = preinst; sourceTree = "<group>"; };
+		8F8D65512571590000D6B5C5 /* prerm */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prerm; sourceTree = "<group>"; };
+		8F8D65522571590000D6B5C5 /* postinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
+		8F95B1932579905E0027112F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8F95B1952579905E0027112F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8F95B1972579905E0027112F /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
+		8F95B1B125799A450027112F /* Tweak.x */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tweak.x; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		8F95B1B225799A450027112F /* libwebmessage.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = libwebmessage.plist; sourceTree = "<group>"; };
+		8F95B1B325799A450027112F /* control */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		8F95B1B425799A450027112F /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		8F95B1BC25799C500027112F /* Tweak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweak.h; sourceTree = "<group>"; };
+		8F95B1C125799CD30027112F /* .stamp */ = {isa = PBXFileReference; lastKnownFileType = text; path = .stamp; sourceTree = "<group>"; };
+		8F95B1C225799CD30027112F /* libwebmessage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libwebmessage.dylib; sourceTree = "<group>"; };
+		8F95B1C425799CD30027112F /* libwebmessage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libwebmessage.dylib; sourceTree = "<group>"; };
+		8F95B1C525799CD30027112F /* Tweak.x.0ca81976.Td */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tweak.x.0ca81976.Td; sourceTree = "<group>"; };
+		8F95B1C625799CD30027112F /* libwebmessage.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = libwebmessage.dylib.dSYM; sourceTree = "<group>"; };
+		8F95B1C725799CD30027112F /* Tweak.x.0ca81976.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Tweak.x.0ca81976.o; sourceTree = "<group>"; };
+		8F95B1C925799CD30027112F /* Tweak.x.5312d145.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = Tweak.x.5312d145.o; sourceTree = "<group>"; };
+		8F95B1CA25799CD30027112F /* Tweak.x.5312d145.Td */ = {isa = PBXFileReference; lastKnownFileType = text; path = Tweak.x.5312d145.Td; sourceTree = "<group>"; };
+		8F95B1CB25799CD30027112F /* libwebmessage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libwebmessage.dylib; sourceTree = "<group>"; };
+		8F95B1CC25799CD30027112F /* libwebmessage.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = libwebmessage.dylib.dSYM; sourceTree = "<group>"; };
+		8F95B1CD25799CD30027112F /* build_session */ = {isa = PBXFileReference; lastKnownFileType = text; path = build_session; sourceTree = "<group>"; };
+		8F95B1D3257A8B730027112F /* IPCSender.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPCSender.m; sourceTree = "<group>"; };
+		8F95B1D6257A8C090027112F /* libmryipc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libmryipc.dylib; sourceTree = "<group>"; };
+		8F95B1D8257A8C510027112F /* IPCSender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPCSender.h; sourceTree = "<group>"; };
+		8F95B201257A90650027112F /* libwebmessage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libwebmessage.dylib; sourceTree = "<group>"; };
+		8F95B202257A90650027112F /* libwebmessage.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = libwebmessage.plist; sourceTree = "<group>"; };
+		8F9FC9702571138E0014E7CC /* WebMessage */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WebMessage; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F9FC9752571138E0014E7CC /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		8F9FC9792571138E0014E7CC /* WebMessage.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WebMessage.plist; sourceTree = "<group>"; };
+		8F9FC97C2571138E0014E7CC /* webmessage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = webmessage.entitlements; sourceTree = "<group>"; };
+		8F9FC97F2571138E0014E7CC /* 0xdeadfa11 */ = {isa = PBXFileReference; lastKnownFileType = text; path = 0xdeadfa11; sourceTree = "<group>"; };
+		8F9FC987257113E40014E7CC /* WebMessage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebMessage-Bridging-Header.h"; sourceTree = "<group>"; };
+		8F9FC988257113E50014E7CC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		8F9FC98F257116A00014E7CC /* WebMessageServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMessageServer.swift; sourceTree = "<group>"; };
+		8F9FC99225711F190014E7CC /* Application Support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Application Support"; sourceTree = "<group>"; };
+		8FE51EDC257530F400D93E7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FF0A1332575429C001775BD /* WebMessagePreferences.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WebMessagePreferences.xcodeproj; path = WebMessagePreferences/WebMessagePreferences.xcodeproj; sourceTree = "<group>"; };
+		8FF0A14F257545A1001775BD /* WebMessage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WebMessage.bundle; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F9FC96D2571138E0014E7CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F9FC997257133BF0014E7CC /* SQLite in Frameworks */,
+				8F95B1D7257A8C090027112F /* libmryipc.dylib in Frameworks */,
+				8F9FC98C257116240014E7CC /* Telegraph in Frameworks */,
+				8F95B206257BBE540027112F /* SwiftyJSON in Frameworks */,
+				8F95B203257A90650027112F /* libwebmessage.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8F95B1922579905E0027112F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1932579905E0027112F /* UIKit.framework */,
+				8F95B1952579905E0027112F /* Foundation.framework */,
+				8F95B1972579905E0027112F /* CydiaSubstrate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8F95B1B02579980E0027112F /* libwebmessage */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1BD25799CD30027112F /* .theos */,
+				8F95B1B325799A450027112F /* control */,
+				8F95B1B225799A450027112F /* libwebmessage.plist */,
+				8F95B1B425799A450027112F /* Makefile */,
+				8F95B1B125799A450027112F /* Tweak.x */,
+				8F95B1BC25799C500027112F /* Tweak.h */,
+			);
+			path = libwebmessage;
+			sourceTree = "<group>";
+		};
+		8F95B1BD25799CD30027112F /* .theos */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1BE25799CD30027112F /* obj */,
+				8F95B1CD25799CD30027112F /* build_session */,
+			);
+			path = .theos;
+			sourceTree = "<group>";
+		};
+		8F95B1BE25799CD30027112F /* obj */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1BF25799CD30027112F /* debug */,
+			);
+			path = obj;
+			sourceTree = "<group>";
+		};
+		8F95B1BF25799CD30027112F /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1C025799CD30027112F /* armv7 */,
+				8F95B1C125799CD30027112F /* .stamp */,
+				8F95B1C225799CD30027112F /* libwebmessage.dylib */,
+				8F95B1C325799CD30027112F /* arm64e */,
+				8F95B1C825799CD30027112F /* arm64 */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
+		8F95B1C025799CD30027112F /* armv7 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = armv7;
+			sourceTree = "<group>";
+		};
+		8F95B1C325799CD30027112F /* arm64e */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1C425799CD30027112F /* libwebmessage.dylib */,
+				8F95B1C525799CD30027112F /* Tweak.x.0ca81976.Td */,
+				8F95B1C625799CD30027112F /* libwebmessage.dylib.dSYM */,
+				8F95B1C725799CD30027112F /* Tweak.x.0ca81976.o */,
+			);
+			path = arm64e;
+			sourceTree = "<group>";
+		};
+		8F95B1C825799CD30027112F /* arm64 */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1C925799CD30027112F /* Tweak.x.5312d145.o */,
+				8F95B1CA25799CD30027112F /* Tweak.x.5312d145.Td */,
+				8F95B1CB25799CD30027112F /* libwebmessage.dylib */,
+				8F95B1CC25799CD30027112F /* libwebmessage.dylib.dSYM */,
+			);
+			path = arm64;
+			sourceTree = "<group>";
+		};
+		8F95B1D5257A8BEB0027112F /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1D6257A8C090027112F /* libmryipc.dylib */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		8F95B1FF257A90650027112F /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B200257A90650027112F /* DynamicLibraries */,
+			);
+			path = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		8F95B200257A90650027112F /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B201257A90650027112F /* libwebmessage.dylib */,
+				8F95B202257A90650027112F /* libwebmessage.plist */,
+			);
+			path = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+		8F9FC9672571138E0014E7CC = {
+			isa = PBXGroup;
+			children = (
+				8F95B1B02579980E0027112F /* libwebmessage */,
+				8F9FC9722571138E0014E7CC /* WebMessage */,
+				8F95B1922579905E0027112F /* Frameworks */,
+				8F9FC9712571138E0014E7CC /* Products */,
+				8FF0A1332575429C001775BD /* WebMessagePreferences.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		8F9FC9712571138E0014E7CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F9FC9702571138E0014E7CC /* WebMessage */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F9FC9722571138E0014E7CC /* WebMessage */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1D5257A8BEB0027112F /* Libraries */,
+				8F9FC97C2571138E0014E7CC /* webmessage.entitlements */,
+				8F9FC9732571138E0014E7CC /* Package */,
+				8F9FC988257113E50014E7CC /* main.swift */,
+				8F9FC987257113E40014E7CC /* WebMessage-Bridging-Header.h */,
+				8F9FC98F257116A00014E7CC /* WebMessageServer.swift */,
+				8FE51EDC257530F400D93E7A /* Info.plist */,
+				8F95B1D3257A8B730027112F /* IPCSender.m */,
+				8F95B1D8257A8C510027112F /* IPCSender.h */,
+				8F1462A4258CEF9A00A5C80F /* kern_memorystatus.h */,
+			);
+			path = WebMessage;
+			sourceTree = "<group>";
+		};
+		8F9FC9732571138E0014E7CC /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				8F9FC9742571138E0014E7CC /* DEBIAN */,
+				8F9FC9762571138E0014E7CC /* Library */,
+				8F9FC97D2571138E0014E7CC /* usr */,
+			);
+			path = Package;
+			sourceTree = "<group>";
+		};
+		8F9FC9742571138E0014E7CC /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				8F8D65522571590000D6B5C5 /* postinst */,
+				8F8D65502571590000D6B5C5 /* preinst */,
+				8F8D65512571590000D6B5C5 /* prerm */,
+				8F9FC9752571138E0014E7CC /* control */,
+			);
+			path = DEBIAN;
+			sourceTree = "<group>";
+		};
+		8F9FC9762571138E0014E7CC /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8F95B1FF257A90650027112F /* MobileSubstrate */,
+				8FF0A14E257545A1001775BD /* PreferenceBundles */,
+				8F8D654F2571588300D6B5C5 /* LaunchDaemons */,
+				8F9FC99225711F190014E7CC /* Application Support */,
+				8F9FC9772571138E0014E7CC /* PreferenceLoader */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		8F9FC9772571138E0014E7CC /* PreferenceLoader */ = {
+			isa = PBXGroup;
+			children = (
+				8F9FC9782571138E0014E7CC /* Preferences */,
+			);
+			path = PreferenceLoader;
+			sourceTree = "<group>";
+		};
+		8F9FC9782571138E0014E7CC /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				8F9FC9792571138E0014E7CC /* WebMessage.plist */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		8F9FC97D2571138E0014E7CC /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				8F9FC97E2571138E0014E7CC /* bin */,
+			);
+			path = usr;
+			sourceTree = "<group>";
+		};
+		8F9FC97E2571138E0014E7CC /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				8F9FC97F2571138E0014E7CC /* 0xdeadfa11 */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		8FF0A1342575429C001775BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FF0A14E257545A1001775BD /* PreferenceBundles */ = {
+			isa = PBXGroup;
+			children = (
+				8FF0A14F257545A1001775BD /* WebMessage.bundle */,
+			);
+			path = PreferenceBundles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		8F95B1B625799AFD0027112F /* libwebmesesage */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 8F95B1B725799AFD0027112F /* Build configuration list for PBXLegacyTarget "libwebmesesage" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/aziz/Tweaks/MonkeyDev/WebMessage/libwebmessage;
+			dependencies = (
+			);
+			name = libwebmesesage;
+			passBuildSettingsInEnvironment = 1;
+			productName = libwebmesesage;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		8F9FC96F2571138E0014E7CC /* WebMessage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F9FC9842571138E0014E7CC /* Build configuration list for PBXNativeTarget "WebMessage" */;
+			buildPhases = (
+				8F9FC96C2571138E0014E7CC /* Sources */,
+				8F9FC96D2571138E0014E7CC /* Frameworks */,
+				8F9FC96E2571138E0014E7CC /* Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F95B1BB25799B6F0027112F /* PBXTargetDependency */,
+				8FF0A15125754C54001775BD /* PBXTargetDependency */,
+			);
+			name = WebMessage;
+			packageProductDependencies = (
+				8F9FC98B257116240014E7CC /* Telegraph */,
+				8F9FC996257133BF0014E7CC /* SQLite */,
+				8F95B205257BBE540027112F /* SwiftyJSON */,
+			);
+			productName = WebMessage;
+			productReference = 8F9FC9702571138E0014E7CC /* WebMessage */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F9FC9682571138E0014E7CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1170;
+				TargetAttributes = {
+					8F95B1B625799AFD0027112F = {
+						CreatedOnToolsVersion = 11.7;
+					};
+					8F9FC96F2571138E0014E7CC = {
+						CreatedOnToolsVersion = 11.7;
+						LastSwiftMigration = 1170;
+					};
+				};
+			};
+			buildConfigurationList = 8F9FC96B2571138E0014E7CC /* Build configuration list for PBXProject "WebMessage" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8F9FC9672571138E0014E7CC;
+			packageReferences = (
+				8F9FC98A257116240014E7CC /* XCRemoteSwiftPackageReference "Telegraph" */,
+				8F9FC995257133BF0014E7CC /* XCRemoteSwiftPackageReference "SQLite" */,
+				8F95B204257BBE540027112F /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
+			productRefGroup = 8F9FC9712571138E0014E7CC /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8FF0A1342575429C001775BD /* Products */;
+					ProjectRef = 8FF0A1332575429C001775BD /* WebMessagePreferences.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8F9FC96F2571138E0014E7CC /* WebMessage */,
+				8F95B1B625799AFD0027112F /* libwebmesesage */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8F9FC96E2571138E0014E7CC /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/MonkeyDev/bin/md --xcbp\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F9FC96C2571138E0014E7CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F95B1B525799A450027112F /* Makefile in Sources */,
+				8F9FC989257113E50014E7CC /* main.swift in Sources */,
+				8F9FC990257116A00014E7CC /* WebMessageServer.swift in Sources */,
+				8F95B1D4257A8B730027112F /* IPCSender.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F95B1BB25799B6F0027112F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8F95B1B625799AFD0027112F /* libwebmesesage */;
+			targetProxy = 8F95B1BA25799B6F0027112F /* PBXContainerItemProxy */;
+		};
+		8FF0A15125754C54001775BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = WebMessagePreferences;
+			platformFilter = ios;
+			targetProxy = 8FF0A15025754C54001775BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8F95B1B825799AFD0027112F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = XFM4CE2568;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				MonkeyDevTheosPath = /Users/aziz/theos;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				THEOS = /Users/aziz/theos;
+			};
+			name = Release;
+		};
+		8F95B1B925799AFD0027112F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = XFM4CE2568;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				MonkeyDevTheosPath = /Users/aziz/theos;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				THEOS = /Users/aziz/theos;
+			};
+			name = Debug;
+		};
+		8F9FC9822571138E0014E7CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WebMessage/webmessage.entitlements;
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /Users/aziz/theos;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"WebMessage\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e";
+			};
+			name = Release;
+		};
+		8F9FC9832571138E0014E7CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = WebMessage/webmessage.entitlements;
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
+				MonkeyDevPath = /opt/MonkeyDev;
+				MonkeyDevTheosPath = /Users/aziz/theos;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"WebMessage\\\"\"";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+				VALID_ARCHS = "arm64 arm64e";
+			};
+			name = Debug;
+		};
+		8F9FC9852571138E0014E7CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = WebMessage/webmessage.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XFM4CE2568;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+					"$(MonkeyDevTheosPath)/lib",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(MonkeyDevTheosPath)/vendor/include/**",
+					"$(MonkeyDevTheosPath)/include",
+				);
+				INSTALL_PATH = /usr/bin;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WebMessage/Package/Library/MobileSubstrate/DynamicLibraries",
+					"$(PROJECT_DIR)/WebMessage/Libraries",
+				);
+				MonkeyDevBuildPackageOnAnyBuild = NO;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = NO;
+				MonkeyDevDeviceIP = 192.168.8.100;
+				MonkeyDevDevicePassword = "";
+				MonkeyDevDevicePort = "";
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevTheosPath = /Users/aziz/theos;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgtaziz.webmessage;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WebMessage/WebMessage-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		8F9FC9862571138E0014E7CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = WebMessage/webmessage.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XFM4CE2568;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(MonkeyDevPath)/frameworks/**",
+					"$(MonkeyDevTheosPath)/vendor/lib",
+					"$(MonkeyDevTheosPath)/lib",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(MonkeyDevTheosPath)/vendor/include/**",
+					"$(MonkeyDevTheosPath)/include",
+				);
+				INSTALL_PATH = /usr/bin;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WebMessage/Package/Library/MobileSubstrate/DynamicLibraries",
+					"$(PROJECT_DIR)/WebMessage/Libraries",
+				);
+				MonkeyDevBuildPackageOnAnyBuild = NO;
+				MonkeyDevClearUiCacheOnInstall = NO;
+				MonkeyDevCopyOnBuild = NO;
+				MonkeyDevDeviceIP = 192.168.8.100;
+				MonkeyDevDevicePassword = "";
+				MonkeyDevDevicePort = "";
+				MonkeyDevInstallOnAnyBuild = YES;
+				MonkeyDevInstallOnProfiling = YES;
+				MonkeyDevTheosPath = /Users/aziz/theos;
+				MonkeyDevkillProcessOnInstall = SpringBoard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sgtaziz.webmessage;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "WebMessage/WebMessage-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F95B1B725799AFD0027112F /* Build configuration list for PBXLegacyTarget "libwebmesesage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F95B1B825799AFD0027112F /* Release */,
+				8F95B1B925799AFD0027112F /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F9FC96B2571138E0014E7CC /* Build configuration list for PBXProject "WebMessage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F9FC9822571138E0014E7CC /* Release */,
+				8F9FC9832571138E0014E7CC /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F9FC9842571138E0014E7CC /* Build configuration list for PBXNativeTarget "WebMessage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F9FC9852571138E0014E7CC /* Release */,
+				8F9FC9862571138E0014E7CC /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F95B204257BBE540027112F /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8F9FC98A257116240014E7CC /* XCRemoteSwiftPackageReference "Telegraph" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Building42/Telegraph";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		8F9FC995257133BF0014E7CC /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F95B205257BBE540027112F /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F95B204257BBE540027112F /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		8F9FC98B257116240014E7CC /* Telegraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F9FC98A257116240014E7CC /* XCRemoteSwiftPackageReference "Telegraph" */;
+			productName = Telegraph;
+		};
+		8F9FC996257133BF0014E7CC /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F9FC995257133BF0014E7CC /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8F9FC9682571138E0014E7CC /* Project object */;
+}

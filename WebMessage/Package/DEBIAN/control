@@ -1,0 +1,14 @@
+Package: com.sgtaziz.WebMessage
+Name: WebMessage
+Version: 0.2.4
+Description: Your messages, on every device.
+Section: System
+Depends: firmware (>= 12.0), org.swift.libswift, openssl, com.muirey03.libmryipc, mobilesubstrate, preferenceloader
+Conflicts: 
+Replaces: 
+Priority: optional
+Architecture: iphoneos-arm
+Author: sgtaziz
+Homepage: 
+Depiction: 
+Maintainer: Aziz <sgtaziz013@gmail.com>
