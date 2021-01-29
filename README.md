@@ -1,6 +1,6 @@
 # WebMessage-Tweak
 iOS tweak companion for WebMessage client. Get it through my repo [https://sgtaziz.github.io/repo](https://sgtaziz.github.io/repo)
-
+**To open issues, visit the [client's repo](https://github.com/sgtaziz/WebMessage).**
 ## Warnings
 * This package requires the [client](https://github.com/sgtaziz/WebMessage/releases/latest) installed on your computer to work! Without it, this package will be useless.
 
