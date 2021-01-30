@@ -556,10 +556,14 @@ extension WebMessageServer {
     let contacts = try! db!.prepare("SELECT id FROM handle WHERE ROWID IN (SELECT handle_id FROM chat_handle_join WHERE chat_id IN (SELECT ROWID FROM chat WHERE chat_identifier IS \"\(chat_id)\"))")
 
     var result = [String]()
+    var docIds = [Int]()
 
     for contact in contacts {
-      let name = getDisplayName(chat_id: contact[0] as? String ?? "")[0]
-      result.append(name as! String)
+      let contactData = getDisplayName(chat_id: contact[0] as? String ?? "")
+      if !docIds.contains(contactData[1] as! Int) {
+        docIds.append(contactData[1] as! Int)
+        result.append(contactData[0] as! String)
+      }
     }
 
     return result

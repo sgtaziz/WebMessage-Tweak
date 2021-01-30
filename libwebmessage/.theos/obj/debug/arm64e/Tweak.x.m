@@ -32,9 +32,9 @@
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class IMDaemonController; @class CKMediaObjectManager; @class IMChatRegistry; @class CKComposition; @class IMAccountController; @class IMMessage; @class NSNotificationCenter; @class CKConversationList; @class IMHandle; 
+@class NSNotificationCenter; @class IMAccountController; @class IMChatRegistry; @class CKMediaObjectManager; @class IMMessage; @class CKComposition; @class IMDaemonController; @class IMHandle; @class CKConversationList; 
 static unsigned (*_logos_orig$_ungrouped$IMDaemonController$_capabilities)(_LOGOS_SELF_TYPE_NORMAL IMDaemonController* _LOGOS_SELF_CONST, SEL); static unsigned _logos_method$_ungrouped$IMDaemonController$_capabilities(_LOGOS_SELF_TYPE_NORMAL IMDaemonController* _LOGOS_SELF_CONST, SEL); static void (*_logos_orig$_ungrouped$NSNotificationCenter$postNotificationName$object$userInfo$)(_LOGOS_SELF_TYPE_NORMAL NSNotificationCenter* _LOGOS_SELF_CONST, SEL, NSString *, id, NSDictionary *); static void _logos_method$_ungrouped$NSNotificationCenter$postNotificationName$object$userInfo$(_LOGOS_SELF_TYPE_NORMAL NSNotificationCenter* _LOGOS_SELF_CONST, SEL, NSString *, id, NSDictionary *); 
-static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMChatRegistry(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMChatRegistry"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKComposition(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKComposition"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMDaemonController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMDaemonController"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKMediaObjectManager(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKMediaObjectManager"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKConversationList(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKConversationList"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMHandle(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMHandle"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMMessage(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMMessage"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMAccountController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMAccountController"); } return _klass; }
+static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKConversationList(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKConversationList"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMDaemonController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMDaemonController"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMHandle(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMHandle"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMMessage(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMMessage"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKComposition(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKComposition"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CKMediaObjectManager(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CKMediaObjectManager"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMChatRegistry(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMChatRegistry"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$IMAccountController(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("IMAccountController"); } return _klass; }
 #line 13 "Tweak.x"
 @implementation WebMessageIPC {
   MRYIPCCenter* _center;
@@ -63,74 +63,72 @@ static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _
 - (void)sendText:(NSDictionary *)vals {
   __block NSString* msgGUID;
 
-  dispatch_sync(dispatch_get_main_queue(), ^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     IMDaemonController* controller = [_logos_static_class_lookup$IMDaemonController() sharedController];
-  
-    @autoreleasepool {
-      if ([controller connectToDaemon]) {
-        NSArray* attachments = vals[@"attachment"];
-        NSString* textString = vals[@"text"];
-        NSString* address = vals[@"address"];
-        NSString* sub = vals[@"subject"];
 
-        NSAttributedString* text = [[NSAttributedString alloc] initWithString:textString];
-        NSAttributedString* subject = [[NSAttributedString alloc] initWithString:sub];
+    if ([controller connectToDaemon]) {
+      NSArray* attachments = vals[@"attachment"];
+      NSString* textString = vals[@"text"];
+      NSString* address = vals[@"address"];
+      NSString* sub = vals[@"subject"];
 
-        CKConversationList* list = [_logos_static_class_lookup$CKConversationList() sharedConversationList];
-        CKConversation* conversation = [list conversationForExistingChatWithGroupID:address];
+      NSAttributedString* text = [[NSAttributedString alloc] initWithString:textString];
+      NSAttributedString* subject = [[NSAttributedString alloc] initWithString:sub];
 
-        if (conversation != nil) {
-          CKComposition* composition  = [[_logos_static_class_lookup$CKComposition() alloc] initWithText:text subject:([subject length] > 0 ? subject : nil)];
-          CKMediaObjectManager* objManager = [_logos_static_class_lookup$CKMediaObjectManager() sharedInstance];
+      CKConversationList* list = [_logos_static_class_lookup$CKConversationList() sharedConversationList];
+      CKConversation* conversation = [list conversationForExistingChatWithGroupID:address];
 
-          for (NSDictionary* attachment in attachments) {
-            NSString* base64Data = attachment[@"data"];
-            NSString* filename = attachment[@"name"];
-            
-            NSData *data = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
-            id UTITypes = [NSClassFromString(@"CKImageMediaObject") UTITypes];
-            CKMediaObject* object = [objManager mediaObjectWithData:data UTIType:UTITypes filename:filename transcoderUserInfo:nil];
+      if (conversation != nil) {
+        CKComposition* composition  = [[_logos_static_class_lookup$CKComposition() alloc] initWithText:text subject:([subject length] > 0 ? subject : nil)];
+        CKMediaObjectManager* objManager = [_logos_static_class_lookup$CKMediaObjectManager() sharedInstance];
 
-            composition = [composition compositionByAppendingMediaObject:object];
-          }
-
-          id message = [conversation messageWithComposition:composition];
-
-          [conversation sendMessage:message newComposition:YES];
-
-          msgGUID = [(IMMessage *)message guid];
-
-        } else {
-          IMAccountController *sharedAccountController = [_logos_static_class_lookup$IMAccountController() sharedInstance];
-
-          IMAccount *myAccount = [sharedAccountController activeIMessageAccount];
-          if (myAccount == nil)
-            myAccount = [sharedAccountController activeSMSAccount];
-
-          __NSCFString *handleId = (__NSCFString *)address;
-          IMHandle *handle = [[_logos_static_class_lookup$IMHandle() alloc] initWithAccount:myAccount ID:handleId alreadyCanonical:YES];
-
-          IMChatRegistry *registry = [_logos_static_class_lookup$IMChatRegistry() sharedInstance];
-          IMChat *chat = [registry chatForIMHandle:handle];
-
-          IMMessage* message;
-          if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 14.0)
-            message = [_logos_static_class_lookup$IMMessage() instantMessageWithText:text flags:1048581 threadIdentifier:nil];
-          else
-            message = [_logos_static_class_lookup$IMMessage() instantMessageWithText:text flags:1048581];
-
-          [chat sendMessage:message];
-
-          msgGUID = [(IMMessage *)message guid];
-        }
+        for (NSDictionary* attachment in attachments) {
+          NSString* base64Data = attachment[@"data"];
+          NSString* filename = attachment[@"name"];
           
-        if ([WebMessageIPC isServerRunning]) {
-          MRYIPCCenter *center = [MRYIPCCenter centerNamed:@"com.sgtaziz.webmessagelistener"];
-          [center callExternalVoidMethod:@selector(handleReceivedTextWithCallback:) withArguments:msgGUID];
+          NSData *data = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
+          id UTITypes = [NSClassFromString(@"CKImageMediaObject") UTITypes];
+          CKMediaObject* object = [objManager mediaObjectWithData:data UTIType:UTITypes filename:filename transcoderUserInfo:nil];
+
+          composition = [composition compositionByAppendingMediaObject:object];
         }
+
+        id message = [conversation messageWithComposition:composition];
+
+        [conversation sendMessage:message newComposition:YES];
+
+        msgGUID = [(IMMessage *)message guid];
+
       } else {
-        WMLog(@"Failed to connect to daemon");
+        IMAccountController *sharedAccountController = [_logos_static_class_lookup$IMAccountController() sharedInstance];
+
+        IMAccount *myAccount = [sharedAccountController activeIMessageAccount];
+        if (myAccount == nil)
+          myAccount = [sharedAccountController activeSMSAccount];
+
+        __NSCFString *handleId = (__NSCFString *)address;
+        IMHandle *handle = [[_logos_static_class_lookup$IMHandle() alloc] initWithAccount:myAccount ID:handleId alreadyCanonical:YES];
+
+        IMChatRegistry *registry = [_logos_static_class_lookup$IMChatRegistry() sharedInstance];
+        IMChat *chat = [registry chatForIMHandle:handle];
+
+        IMMessage* message;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 14.0)
+          message = [_logos_static_class_lookup$IMMessage() instantMessageWithText:text flags:1048581 threadIdentifier:nil];
+        else
+          message = [_logos_static_class_lookup$IMMessage() instantMessageWithText:text flags:1048581];
+
+        [chat sendMessage:message];
+
+        msgGUID = [(IMMessage *)message guid];
       }
+        
+      if ([WebMessageIPC isServerRunning]) {
+        MRYIPCCenter *center = [MRYIPCCenter centerNamed:@"com.sgtaziz.webmessagelistener"];
+        [center callExternalVoidMethod:@selector(handleReceivedTextWithCallback:) withArguments:msgGUID];
+      }
+    } else {
+      WMLog(@"Failed to connect to daemon");
     }
   });
 }
@@ -207,7 +205,7 @@ static void _logos_method$_ungrouped$NSNotificationCenter$postNotificationName$o
 }
 
 
-static __attribute__((constructor)) void _logosLocalCtor_95626a39(int __unused argc, char __unused **argv, char __unused **envp) {
+static __attribute__((constructor)) void _logosLocalCtor_992005e9(int __unused argc, char __unused **argv, char __unused **envp) {
   NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
   if ([bundleID isEqualToString:@"com.apple.springboard"]) {
     [WebMessageIPC sharedInstance];
@@ -215,4 +213,4 @@ static __attribute__((constructor)) void _logosLocalCtor_95626a39(int __unused a
 }
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$IMDaemonController = objc_getClass("IMDaemonController"); { MSHookMessageEx(_logos_class$_ungrouped$IMDaemonController, @selector(_capabilities), (IMP)&_logos_method$_ungrouped$IMDaemonController$_capabilities, (IMP*)&_logos_orig$_ungrouped$IMDaemonController$_capabilities);}Class _logos_class$_ungrouped$NSNotificationCenter = objc_getClass("NSNotificationCenter"); { MSHookMessageEx(_logos_class$_ungrouped$NSNotificationCenter, @selector(postNotificationName:object:userInfo:), (IMP)&_logos_method$_ungrouped$NSNotificationCenter$postNotificationName$object$userInfo$, (IMP*)&_logos_orig$_ungrouped$NSNotificationCenter$postNotificationName$object$userInfo$);}} }
-#line 190 "Tweak.x"
+#line 188 "Tweak.x"

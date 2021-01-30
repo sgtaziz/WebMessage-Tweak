@@ -37,74 +37,72 @@
 - (void)sendText:(NSDictionary *)vals {
   __block NSString* msgGUID;
 
-  dispatch_sync(dispatch_get_main_queue(), ^{
+  dispatch_async(dispatch_get_main_queue(), ^{
     IMDaemonController* controller = [%c(IMDaemonController) sharedController];
-  
-    @autoreleasepool {
-      if ([controller connectToDaemon]) {
-        NSArray* attachments = vals[@"attachment"];
-        NSString* textString = vals[@"text"];
-        NSString* address = vals[@"address"];
-        NSString* sub = vals[@"subject"];
 
-        NSAttributedString* text = [[NSAttributedString alloc] initWithString:textString];
-        NSAttributedString* subject = [[NSAttributedString alloc] initWithString:sub];
+    if ([controller connectToDaemon]) {
+      NSArray* attachments = vals[@"attachment"];
+      NSString* textString = vals[@"text"];
+      NSString* address = vals[@"address"];
+      NSString* sub = vals[@"subject"];
 
-        CKConversationList* list = [%c(CKConversationList) sharedConversationList];
-        CKConversation* conversation = [list conversationForExistingChatWithGroupID:address];
+      NSAttributedString* text = [[NSAttributedString alloc] initWithString:textString];
+      NSAttributedString* subject = [[NSAttributedString alloc] initWithString:sub];
 
-        if (conversation != nil) {
-          CKComposition* composition  = [[%c(CKComposition) alloc] initWithText:text subject:([subject length] > 0 ? subject : nil)];
-          CKMediaObjectManager* objManager = [%c(CKMediaObjectManager) sharedInstance];
+      CKConversationList* list = [%c(CKConversationList) sharedConversationList];
+      CKConversation* conversation = [list conversationForExistingChatWithGroupID:address];
 
-          for (NSDictionary* attachment in attachments) {
-            NSString* base64Data = attachment[@"data"];
-            NSString* filename = attachment[@"name"];
-            
-            NSData *data = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
-            id UTITypes = [NSClassFromString(@"CKImageMediaObject") UTITypes];
-            CKMediaObject* object = [objManager mediaObjectWithData:data UTIType:UTITypes filename:filename transcoderUserInfo:nil];
+      if (conversation != nil) {
+        CKComposition* composition  = [[%c(CKComposition) alloc] initWithText:text subject:([subject length] > 0 ? subject : nil)];
+        CKMediaObjectManager* objManager = [%c(CKMediaObjectManager) sharedInstance];
 
-            composition = [composition compositionByAppendingMediaObject:object];
-          }
-
-          id message = [conversation messageWithComposition:composition];
-
-          [conversation sendMessage:message newComposition:YES];
-
-          msgGUID = [(IMMessage *)message guid];
-
-        } else {
-          IMAccountController *sharedAccountController = [%c(IMAccountController) sharedInstance];
-
-          IMAccount *myAccount = [sharedAccountController activeIMessageAccount];
-          if (myAccount == nil)
-            myAccount = [sharedAccountController activeSMSAccount];
-
-          __NSCFString *handleId = (__NSCFString *)address;
-          IMHandle *handle = [[%c(IMHandle) alloc] initWithAccount:myAccount ID:handleId alreadyCanonical:YES];
-
-          IMChatRegistry *registry = [%c(IMChatRegistry) sharedInstance];
-          IMChat *chat = [registry chatForIMHandle:handle];
-
-          IMMessage* message;
-          if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 14.0)
-            message = [%c(IMMessage) instantMessageWithText:text flags:1048581 threadIdentifier:nil];
-          else
-            message = [%c(IMMessage) instantMessageWithText:text flags:1048581];
-
-          [chat sendMessage:message];
-
-          msgGUID = [(IMMessage *)message guid];
-        }
+        for (NSDictionary* attachment in attachments) {
+          NSString* base64Data = attachment[@"data"];
+          NSString* filename = attachment[@"name"];
           
-        if ([WebMessageIPC isServerRunning]) {
-          MRYIPCCenter *center = [MRYIPCCenter centerNamed:@"com.sgtaziz.webmessagelistener"];
-          [center callExternalVoidMethod:@selector(handleReceivedTextWithCallback:) withArguments:msgGUID];
+          NSData *data = [[NSData alloc] initWithBase64EncodedString:base64Data options:0];
+          id UTITypes = [NSClassFromString(@"CKImageMediaObject") UTITypes];
+          CKMediaObject* object = [objManager mediaObjectWithData:data UTIType:UTITypes filename:filename transcoderUserInfo:nil];
+
+          composition = [composition compositionByAppendingMediaObject:object];
         }
+
+        id message = [conversation messageWithComposition:composition];
+
+        [conversation sendMessage:message newComposition:YES];
+
+        msgGUID = [(IMMessage *)message guid];
+
       } else {
-        WMLog(@"Failed to connect to daemon");
+        IMAccountController *sharedAccountController = [%c(IMAccountController) sharedInstance];
+
+        IMAccount *myAccount = [sharedAccountController activeIMessageAccount];
+        if (myAccount == nil)
+          myAccount = [sharedAccountController activeSMSAccount];
+
+        __NSCFString *handleId = (__NSCFString *)address;
+        IMHandle *handle = [[%c(IMHandle) alloc] initWithAccount:myAccount ID:handleId alreadyCanonical:YES];
+
+        IMChatRegistry *registry = [%c(IMChatRegistry) sharedInstance];
+        IMChat *chat = [registry chatForIMHandle:handle];
+
+        IMMessage* message;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 14.0)
+          message = [%c(IMMessage) instantMessageWithText:text flags:1048581 threadIdentifier:nil];
+        else
+          message = [%c(IMMessage) instantMessageWithText:text flags:1048581];
+
+        [chat sendMessage:message];
+
+        msgGUID = [(IMMessage *)message guid];
       }
+        
+      if ([WebMessageIPC isServerRunning]) {
+        MRYIPCCenter *center = [MRYIPCCenter centerNamed:@"com.sgtaziz.webmessagelistener"];
+        [center callExternalVoidMethod:@selector(handleReceivedTextWithCallback:) withArguments:msgGUID];
+      }
+    } else {
+      WMLog(@"Failed to connect to daemon");
     }
   });
 }
