@@ -1,13 +1,14 @@
 # WebMessage-Tweak
 iOS tweak companion for WebMessage client. Get it through my repo [https://sgtaziz.github.io/repo](https://sgtaziz.github.io/repo)
 
+**To open issues, visit the [client's repo](https://github.com/sgtaziz/WebMessage).**
 ## Warnings
 * This package requires the [client](https://github.com/sgtaziz/WebMessage/releases/latest) installed on your computer to work! Without it, this package will be useless.
 
 * This package has not been tested against iOS 12 fully. It is still in its early stages.
   
 ## Description
-WebMessage is a tweak exposing a REST API (and a websocket) from your phone, allowing for SMS and iMessage functionality. To work, the client used and the phone must be on the same network. Alternatively, tunneling can also be used.
+WebMessage is a tweak exposing a REST API (and a WebSocket) from your phone, allowing for SMS and iMessage functionality. To work, the client used and the phone must be on the same network. Alternatively, tunneling can also be used.
 
 The current features are as follows:
 * Real-time sending and receiving of messages
