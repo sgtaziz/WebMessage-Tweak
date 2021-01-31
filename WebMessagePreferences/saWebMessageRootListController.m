@@ -28,29 +28,35 @@
 }
 
 - (void)stopDaemon {
-  [self daemonStop];
-  
-  UIAlertController * alert = [UIAlertController
-    alertControllerWithTitle:@"WebMessage"
-    message:@"WebMessage is restarting. This might take a few seconds."
-    preferredStyle:UIAlertControllerStyleAlert];
-  
-  UIAlertAction* ok = [UIAlertAction
-    actionWithTitle:@"OK"
-    style:UIAlertActionStyleDefault
-    handler:^(UIAlertAction * action)
-    {
-      [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-  
-  [alert addAction:ok];
-   
-  [self presentViewController:alert animated:YES completion:nil];
+ [self daemonStop];
+
+ UIAlertController * alert = [UIAlertController
+   alertControllerWithTitle:@"WebMessage"
+   message:@"WebMessage is restarting. This might take a few seconds."
+   preferredStyle:UIAlertControllerStyleAlert];
+
+ UIAlertAction* ok = [UIAlertAction
+   actionWithTitle:@"OK"
+   style:UIAlertActionStyleDefault
+   handler:^(UIAlertAction * action)
+   {
+     [alert dismissViewControllerAnimated:YES completion:nil];
+   }];
+
+ [alert addAction:ok];
+
+ [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)daemonStop {
   MRYIPCCenter *center = [MRYIPCCenter centerNamed:@"com.sgtaziz.webmessagelistener"];
   [center callExternalVoidMethod:@selector(stopWebserver:) withArguments:nil];
+}
+
+- (void)respring {
+  pid_t pid;
+  const char *args[] = {"sbreload", NULL, NULL, NULL};
+  posix_spawn(&pid, "usr/bin/sbreload", NULL, NULL, (char *const *)args, NULL);
 }
 
 - (NSString*)getIPAddress {
@@ -105,8 +111,6 @@
   [settings writeToFile:path atomically:YES];
   
   CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("com.sgtaziz.webmessage.settingschanged"), NULL, NULL, YES);
-  
-  [self daemonStop];
   
   if ([specifier.properties[@"id"] isEqual:@"port"] && ![self isPort:value]) {
     [self loadView];

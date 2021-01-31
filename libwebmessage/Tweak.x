@@ -7,7 +7,7 @@
 #include <HBLog.h>
 #include "Tweak.h"
 
-@interface WebMessageIPC : NSObject
+@interface WebMessageIPC : NSObject <NSURLSessionDelegate>
 @end
 
 @implementation WebMessageIPC {
@@ -30,6 +30,7 @@
     [_center addTarget:self action:@selector(setAsRead:)];
     //[_center addTarget:self action:@selector(sendReaction:)]; //TODO: Add reactions
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedText:) name:@"__kIMChatMessageReceivedNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SBBooted:) name:@"SBBootCompleteNotification" object:nil];
   }
   return self;
 }
@@ -149,6 +150,37 @@
   return YES;
 }
 
+- (void)SBBooted:(NSConcreteNotification *)notif {
+  if ([WebMessageIPC isServerRunning]) {
+    NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+    [settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:@"/User/Library/Preferences/com.sgtaziz.webmessage.plist"]];
+    id defaultPort = @8180;
+    BOOL useSSL = settings[@"ssl"] ? [settings[@"ssl"] boolValue] : YES;
+    NSString* protocol = useSSL ? @"https" : @"http";
+    
+    NSString *address = [NSString stringWithFormat:@"%@://localhost:%@/stopServer?auth=%@", protocol, settings[@"port"] ?: defaultPort, settings[@"password"] ?: @""];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    
+    [request setHTTPMethod:@"GET"];
+    [request setURL:[NSURL URLWithString:address]];
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+
+    [[defaultSession dataTaskWithRequest:request completionHandler:
+      ^(NSData * _Nullable data,
+        NSURLResponse * _Nullable response,
+        NSError * _Nullable error) {
+          WMLog(@"Sent restart request", error, response);
+    }] resume];
+  }
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler
+{
+    completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
+}
+
 @end
 
 %hook IMDaemonController
@@ -163,9 +195,12 @@
 %end
 
 %hook NSNotificationCenter
-// This doesn't hook instantly. First message isn't detected?
+// This doesn't hook instantly. Also causes crashes at times
 - (void)postNotificationName:(NSString *)notificationName object:(id)notificationSender userInfo:(NSDictionary *)userInfo {
-  if ([notificationName isEqualToString:@"__kIMChatRegistryMessageSentNotification"]) {
+  NSDictionary *settings = [NSMutableDictionary dictionaryWithContentsOfFile:@"/User/Library/Preferences/com.sgtaziz.webmessage.plist"];
+  BOOL enableHook = settings[@"sendnotificationhook"] ? [settings[@"sendnotificationhook"] boolValue] : YES;
+
+  if (enableHook && [notificationName isEqualToString:@"__kIMChatRegistryMessageSentNotification"]) {
     IMMessage *msg = [userInfo objectForKey:@"__kIMChatRegistryMessageSentMessageKey"];
     NSString* msgGUID = [msg guid];
 

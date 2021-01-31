@@ -38,9 +38,6 @@
 /* Begin PBXFileReference section */
 		8F1462A4258CEF9A00A5C80F /* kern_memorystatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kern_memorystatus.h; sourceTree = "<group>"; };
 		8F8D654F2571588300D6B5C5 /* LaunchDaemons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LaunchDaemons; sourceTree = "<group>"; };
-		8F8D65502571590000D6B5C5 /* preinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = preinst; sourceTree = "<group>"; };
-		8F8D65512571590000D6B5C5 /* prerm */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prerm; sourceTree = "<group>"; };
-		8F8D65522571590000D6B5C5 /* postinst */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
 		8F95B1932579905E0027112F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F95B1952579905E0027112F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8F95B1972579905E0027112F /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
@@ -250,9 +247,6 @@
 		8F9FC9742571138E0014E7CC /* DEBIAN */ = {
 			isa = PBXGroup;
 			children = (
-				8F8D65522571590000D6B5C5 /* postinst */,
-				8F8D65502571590000D6B5C5 /* preinst */,
-				8F8D65512571590000D6B5C5 /* prerm */,
 				8F9FC9752571138E0014E7CC /* control */,
 			);
 			path = DEBIAN;

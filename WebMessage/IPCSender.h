@@ -40,5 +40,4 @@
 - (void)setLocalUserIsTyping:(_Bool)arg1;
 @end
 
-
 #endif

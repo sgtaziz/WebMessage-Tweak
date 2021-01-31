@@ -1,2 +1,0 @@
-#!/bin/sh
-launchctl unload /Library/LaunchDaemons/com.sgtaziz.webmessage.plist 2>&1 > /dev/null

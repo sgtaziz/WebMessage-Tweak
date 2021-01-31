@@ -1,9 +1,0 @@
-#!/bin/sh
-
-#Unload Daemon
-launchctl unload /Library/LaunchDaemons/com.sgtaziz.webmessage.plist 2>&1 > /dev/null
-
-#Remove generated certificates
-rm /Library/Application\ Support/WebMessage/webmessage.*
-rm /Library/Application\ Support/WebMessage/passphrase
-

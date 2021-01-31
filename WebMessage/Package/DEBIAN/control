@@ -1,6 +1,6 @@
 Package: com.sgtaziz.WebMessage
 Name: WebMessage
-Version: 0.2.5
+Version: 0.2.5-1
 Description: Your messages, on every device.
 Section: System
 Depends: firmware (>= 12.0), openssl, com.muirey03.libmryipc, mobilesubstrate, preferenceloader

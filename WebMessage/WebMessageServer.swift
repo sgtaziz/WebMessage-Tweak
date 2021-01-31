@@ -89,8 +89,10 @@ extension WebMessageServer {
       }
     }
     
-    watcher.stopWebserver = { arg in
-      self.stop()
+    watcher.stopWebserver = { _ in
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+        self.stop()
+      })
     }
   }
 
@@ -110,6 +112,7 @@ extension WebMessageServer {
     server.route(.GET, "attachments(/)", serverHandleAttachments)
     server.route(.GET, "contactimg(/)", serverHandleContactImage)
     server.route(.GET, "search(/)", serverHandleSearchContacts)
+    server.route(.GET, "stopServer(/)", serverHandleStopServer)
     server.route(.POST, "sendText(/)", serverHandleSendText)
     server.route(.OPTIONS, "*") { .ok } // Browsers send an OPTIONS request to check for CORS before requesting
     
@@ -245,6 +248,11 @@ extension WebMessageServer: ServerWebSocketDelegate {
 // MARK: - Server route handlers
 
 extension WebMessageServer {
+  private func serverHandleStopServer(request: HTTPRequest) -> HTTPResponse {
+    self.stop()
+    return HTTPResponse(.ok)
+  }
+  
   private func serverHandleSendText(request: HTTPRequest) -> HTTPResponse {
     let data = try? JSON(data: request.body)
     if let data = data {

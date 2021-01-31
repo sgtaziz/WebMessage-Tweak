@@ -37,7 +37,6 @@
 
 
 @implementation IPCWatcher {
-  /// This is a MCRYIPC center that libsmserver contacts whenever a new text is received.
   MRYIPCCenter* _center;
 }
 
