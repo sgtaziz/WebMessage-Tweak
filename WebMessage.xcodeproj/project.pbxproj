@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F750C3D25ED412000BA1511 /* libwebmessage.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 8F95B201257A90650027112F /* libwebmessage.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		8F95B1B525799A450027112F /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 8F95B1B425799A450027112F /* Makefile */; platformFilter = ios; };
 		8F95B1D4257A8B730027112F /* IPCSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F95B1D3257A8B730027112F /* IPCSender.m */; };
 		8F95B1D7257A8C090027112F /* libmryipc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F95B1D6257A8C090027112F /* libmryipc.dylib */; platformFilter = ios; };
@@ -35,8 +36,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8F750C3E25ED412000BA1511 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8F750C3D25ED412000BA1511 /* libwebmessage.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		8F1462A4258CEF9A00A5C80F /* kern_memorystatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kern_memorystatus.h; sourceTree = "<group>"; };
+		8F2D5B3725D6A04B00C3C417 /* preinst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = preinst; sourceTree = "<group>"; };
+		8F2D5B3825D6A04B00C3C417 /* postinst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = postinst; sourceTree = "<group>"; };
+		8F2D5B3925D6A04B00C3C417 /* prerm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = prerm; sourceTree = "<group>"; };
 		8F8D654F2571588300D6B5C5 /* LaunchDaemons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LaunchDaemons; sourceTree = "<group>"; };
 		8F95B1932579905E0027112F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F95B1952579905E0027112F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -247,6 +265,9 @@
 		8F9FC9742571138E0014E7CC /* DEBIAN */ = {
 			isa = PBXGroup;
 			children = (
+				8F2D5B3825D6A04B00C3C417 /* postinst */,
+				8F2D5B3725D6A04B00C3C417 /* preinst */,
+				8F2D5B3925D6A04B00C3C417 /* prerm */,
 				8F9FC9752571138E0014E7CC /* control */,
 			);
 			path = DEBIAN;
@@ -338,6 +359,7 @@
 				8F9FC96C2571138E0014E7CC /* Sources */,
 				8F9FC96D2571138E0014E7CC /* Frameworks */,
 				8F9FC96E2571138E0014E7CC /* Run Script */,
+				8F750C3E25ED412000BA1511 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -569,7 +591,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = WebMessage/webmessage.entitlements;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(MonkeyDevPath)/frameworks/**",
@@ -618,7 +640,7 @@
 				LIBRARY_SEARCH_PATHS = "$(MonkeyDevTheosPath)/vendor/lib/**";
 				MonkeyDevPath = /opt/MonkeyDev;
 				MonkeyDevTheosPath = /Users/aziz/theos;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DTHEOS_INSTANCE_NAME=\"\\\"WebMessage\\\"\"";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -635,6 +657,7 @@
 				CODE_SIGN_ENTITLEMENTS = WebMessage/webmessage.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XFM4CE2568;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -647,6 +670,7 @@
 					"$(MonkeyDevTheosPath)/include",
 				);
 				INSTALL_PATH = /usr/bin;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -672,7 +696,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "WebMessage/WebMessage-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -684,6 +709,7 @@
 				CODE_SIGN_ENTITLEMENTS = WebMessage/webmessage.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XFM4CE2568;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -696,6 +722,7 @@
 					"$(MonkeyDevTheosPath)/include",
 				);
 				INSTALL_PATH = /usr/bin;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -722,7 +749,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "WebMessage/WebMessage-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};

@@ -19,11 +19,13 @@
 @interface CKComposition : NSObject
 - (id)initWithText:(id)arg1 subject:(id)arg2;
 - (id)compositionByAppendingMediaObject:(id)arg1;
+- (id)compositionByAppendingText:(id)arg1 ;
 @end
 
 @interface CKConversation : NSObject
 - (id)messageWithComposition:(id)arg1;
 - (void)sendMessage:(id)arg1 newComposition:(bool)arg2;
+- (void)setLocalUserIsTyping:(BOOL)arg1;
 @end
 
 @interface CKMediaObject : NSObject
@@ -45,11 +47,6 @@
 - (NSOrderedSet *)pinnedConversationIdentifierSet;
 @end
 
-@interface UIApplication (Undocumented)
-+ (id)sharedApplication;
-- (_Bool)launchApplicationWithIdentifier:(id)arg1 suspended:(_Bool)arg2;
-@end
-
 @interface NSConcreteNotification
 - (id)object;
 - (id)userInfo;
@@ -63,15 +60,63 @@
 - (id)_itemForGUID:(id)arg1;
 @end
 
-@interface IMChat : IMItemsController {
-  NSString *_identifier;
+@interface IMHandle : NSObject {
+  NSString *_id;
 }
-- (void)sendMessage:(id)arg1;
-- (void)markAllMessagesAsRead;
+- (id)initWithAccount:(id)arg1 ID:(id)arg2 alreadyCanonical:(_Bool)arg3;
+- (NSString *)ID;
+- (NSString *)personCentricID;
 @end
 
 @interface IMItem
 - (NSString *)guid;
+- (NSString *)service;
+- (NSDictionary *)senderInfo;
+- (NSString *)handle;
+@end
+
+@interface IMMessageItem : IMItem
+- (id)_initWithItem:(id)arg1 text:(id)arg2 index:(long long)arg3 messagePartRange:(NSRange)arg4 subject:(id)arg5;
+- (id)sender;
+- (NSAttributedString *)body;
+- (NSString *)subject;
+- (NSDate *)timeRead;
+- (NSData *)payloadData;
+@end
+
+@interface IMMessage : NSObject {
+  IMHandle *_subject;
+}
++ (id)instantMessageWithText:(id)arg1 flags:(unsigned long long)arg2;
++ (id)instantMessageWithText:(id)arg1 flags:(unsigned long long)arg2 threadIdentifier:(id)arg3;
+- (void)_updateText:(id)arg1;
+- (NSString *)guid;
+- (BOOL)isDelivered;
+- (BOOL)isFromMe;
+- (BOOL)isRead;
+- (BOOL)isDelivered;
+- (NSDate *)timeRead;
+- (NSDate *)timeDelivered;
+- (IMHandle *)subject;
+- (IMMessageItem *)_imMessageItem;
+- (NSDictionary *)messageSummaryInfo;
+- (NSString *)plainBody;
+@end
+
+@interface IMChat : IMItemsController {
+  NSString *_identifier;
+}
+- (void)sendMessage:(id)arg1;
+- (void)sendMessageAcknowledgment:(long long)arg1 forChatItem:(id)arg2 withMessageSummaryInfo:(id)arg3;
+- (void)sendMessageAcknowledgment:(long long)arg1 forChatItem:(id)arg2 withAssociatedMessageInfo:(id)arg3;
+- (void)markAllMessagesAsRead;
+- (void)setLocalUserIsTyping:(BOOL)arg1;
+- (void)remove;
+- (id)loadMessagesUpToGUID:(id)arg1 date:(id)arg2 limit:(unsigned long long)arg3 loadImmediately:(BOOL)arg4 ;
+- (IMMessage *)lastSentMessage;
+- (IMMessage *)messageForGUID:(id)arg1;
+- (NSString *)guid;
+- (NSString *)chatIdentifier;
 @end
 
 @interface IMFileTransferCenter
@@ -87,27 +132,26 @@
 - (id)existingChatWithChatIdentifier:(id)arg1;
 @end
 
+@interface IMTranscriptChatItem : NSObject
+- (NSString *)guid;
+@end
+
+@interface IMTextMessagePartChatItem : IMTranscriptChatItem
+- (NSAttributedString*)text;
+@end
+
+@interface IMTranscriptPluginChatItem
+- (id)_initWithItem:(id)arg1 initialPayload:(id)arg2 messagePartRange:(NSRange)arg3 parentChatHasKnownParticipants:(BOOL)arg4;
+- (id)_initWithItem:(id)arg1 initialPayload:(id)arg2 index:(long long)arg3 messagePartRange:(NSRange)arg4 parentChatHasKnownParticipants:(BOOL)arg5;
+@end
+
+@interface IMPluginPayload
+- (id)initWithMessageItem:(id)arg1;
+@end
+
 @interface IMChatHistoryController
 + (id)sharedInstance;
 - (void)loadMessageWithGUID:(id)arg1 completionBlock:(void(^)(id))arg2;
-@end
-
-@interface IMHandle : NSObject {
-  NSString *_id;
-}
-- (id)initWithAccount:(id)arg1 ID:(id)arg2 alreadyCanonical:(_Bool)arg3;
-@end
-
-@interface IMMessageItem
-- (id)sender;
-@end
-
-@interface IMMessage : NSObject {
-  IMHandle *_subject;
-}
-+ (id)instantMessageWithText:(id)arg1 flags:(unsigned long long)arg2;
-+ (id)instantMessageWithText:(id)arg1 flags:(unsigned long long)arg2 threadIdentifier:(id)arg3;
-- (NSString *)guid;
 @end
 
 @interface IMAccount : NSObject {

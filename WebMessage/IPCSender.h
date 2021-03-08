@@ -15,7 +15,10 @@
 
 - (id)init;
 - (void)sendText:(NSString *)text withSubject:(NSString *)subject toAddress:(NSString *)address withAttachments:(NSArray *)paths;
+- (void)sendReaction:(NSNumber *)reactionId forGuid:(NSString *)guid forChatId:(NSString *)chat_id forPart:(NSNumber *)part;
+- (void)setIsLocallyTyping:(bool)isTyping forChatId:(NSString *)chat_id;
 - (void)sendFakeText;
+- (void)deleteChat:(NSString *)chat_id;
 - (void)setAsRead:(NSString *)chat_id;
 @end
 
@@ -23,11 +26,11 @@
 
 @property (copy) void(^setTexts)(NSString *);
 @property (copy) void(^stopWebserver)(id);
-@property (copy) void(^setTyping)(NSString *);
+@property (copy) void(^setMessageAsRead)(NSDictionary *);
+@property (copy) void(^removeChat)(NSString *);
+@property (copy) void(^setTypingIndicator)(NSDictionary *);
 + (instancetype)sharedInstance;
 - (instancetype)init;
-- (void)handleReceivedTextWithCallback:(NSString *)chat_id;
-//- (void)handlePartyTypingWithCallback:(NSString *)chat_id;
 
 @end
 

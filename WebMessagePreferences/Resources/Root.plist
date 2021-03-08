@@ -60,30 +60,30 @@
 			<key>PostNotification</key>
 			<string>com.sgtaziz.webmessage.settingschanged</string>
 		</dict>
-    <dict>
-      <key>cell</key>
-      <string>PSGroupCell</string>
-      <key>isStaticText</key>
-      <true/>
-      <key>label</key>
-      <string>Features</string>
-      <key>footerText</key>
-      <string>Enabling this will show messages sent from your phone in real-time. May cause the Messages app to crash on some devices. Changing this option requires a respring.</string>
-    </dict>
-    <dict>
-      <key>cell</key>
-      <string>PSSwitchCell</string>
-      <key>default</key>
-      <true/>
-      <key>defaults</key>
-      <string>com.sgtaziz.webmessage</string>
-      <key>id</key>
-      <string>sendnotificationhook</string>
-      <key>label</key>
-      <string>Hook sending texts</string>
-      <key>PostNotification</key>
-      <string>com.sgtaziz.webmessage.settingschanged</string>
-    </dict>
+<!--    <dict>-->
+<!--      <key>cell</key>-->
+<!--      <string>PSGroupCell</string>-->
+<!--      <key>isStaticText</key>-->
+<!--      <true/>-->
+<!--      <key>label</key>-->
+<!--      <string>Features</string>-->
+<!--      <key>footerText</key>-->
+<!--      <string>Enabling this will show messages sent from your phone in real-time. May cause the Messages app to crash on some devices. Changing this option requires a respring.</string>-->
+<!--    </dict>-->
+<!--    <dict>-->
+<!--      <key>cell</key>-->
+<!--      <string>PSSwitchCell</string>-->
+<!--      <key>default</key>-->
+<!--      <true/>-->
+<!--      <key>defaults</key>-->
+<!--      <string>com.sgtaziz.webmessage</string>-->
+<!--      <key>id</key>-->
+<!--      <string>sendnotificationhook</string>-->
+<!--      <key>label</key>-->
+<!--      <string>Hook sending texts</string>-->
+<!--      <key>PostNotification</key>-->
+<!--      <string>com.sgtaziz.webmessage.settingschanged</string>-->
+<!--    </dict>-->
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>

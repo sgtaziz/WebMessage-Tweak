@@ -26,6 +26,18 @@
   [self.center callExternalVoidMethod:@selector(sendText:) withArguments:@{ @"text": text, @"subject": subject, @"address": address, @"attachment": paths }];
 }
 
+- (void)sendReaction:(NSNumber *)reactionId forGuid:(NSString *)guid forChatId:(NSString *)chat_id forPart:(NSNumber *)part {
+  [self.center callExternalVoidMethod:@selector(sendReaction:) withArguments:@{ @"reactionId": reactionId, @"guid": guid, @"chat_id": chat_id, @"part": part }];
+}
+
+- (void)setIsLocallyTyping:(bool)isTyping forChatId:(NSString *)chat_id {
+  [self.center callExternalVoidMethod:@selector(setIsLocallyTyping:) withArguments:@{ @"chat_id": chat_id, @"typing": @(isTyping) }];
+}
+
+- (void)deleteChat:(NSString *)chat_id {
+  [self.center callExternalVoidMethod:@selector(deleteChat:) withArguments:@{ @"chat": chat_id }];
+}
+
 - (void)setAsRead:(NSString *)chat_id {
   NSArray* chats = [chat_id componentsSeparatedByString:@","]; /// To allow marking multiple convos as read
   for (NSString* chat in chats) {
@@ -54,6 +66,9 @@
     _center = [MRYIPCCenter centerNamed:@"com.sgtaziz.webmessagelistener"];
     [_center addTarget:self action:@selector(handleReceivedTextWithCallback:)];
     [_center addTarget:self action:@selector(stopWebserver:)];
+    [_center addTarget:self action:@selector(handleSetMessageAsRead:)];
+    [_center addTarget:self action:@selector(handleChatRemoved:)];
+    [_center addTarget:self action:@selector(handleChangeTypingIndicator:)];
   }
   return self;
 }
@@ -64,6 +79,18 @@
 
 - (void)stopWebserver:(id)arg {
   _stopWebserver(arg);
+}
+
+- (void)handleSetMessageAsRead:(NSDictionary *)args {
+  _setMessageAsRead(args);
+}
+
+- (void)handleChatRemoved:(NSString *)chat_id {
+  _removeChat(chat_id);
+}
+
+- (void)handleChangeTypingIndicator:(NSDictionary *)args {
+  _setTypingIndicator(args);
 }
 
 @end

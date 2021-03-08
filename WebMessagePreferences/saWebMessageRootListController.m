@@ -112,6 +112,8 @@
   
   CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFSTR("com.sgtaziz.webmessage.settingschanged"), NULL, NULL, YES);
   
+  [self daemonStop];
+  
   if ([specifier.properties[@"id"] isEqual:@"port"] && ![self isPort:value]) {
     [self loadView];
   }
